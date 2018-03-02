@@ -1,8 +1,5 @@
-FROM jenkins/jenkins
+FROM gitlab/gitlab-runner
 
-USER root
-
-RUN apt-get update && apt-get install -y python-pip && rm -rf /var/lib/apt/lists/*
-RUN pip install ansible
-
-USER jenkins
+RUN cd /tmp && wget https://bootstrap.pypa.io/get-pip.py && \
+    /usr/bin/python3 /tmp/get-pip.py && \
+    pip install ansible
